@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 import sys
-import signal
 import re
+import signal
 
 def print_metrics(status_counts, total_file_size):
     """
@@ -49,7 +49,7 @@ def main():
         for line in sys.stdin:
             line = line.strip()  # Remove leading/trailing whitespace
             
-            # Define a regex pattern for matching expected line format
+            # Define a regex pattern for matching expected log format
             pattern = r'^(\S+) - \[([^\]]+)\] "GET \/projects\/260 HTTP\/1\.1" (\d+) (\d+)$'
             match = re.match(pattern, line)
             
@@ -58,8 +58,6 @@ def main():
                 continue
             
             # Extract parts from matched groups
-            ip_address = match.group(1)
-            date = match.group(2)
             status_code = match.group(3)
             file_size = int(match.group(4))
             
